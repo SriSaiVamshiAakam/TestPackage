@@ -1,0 +1,22 @@
+plugins {
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = base.archivesName.get()
+        }
+    }
+    repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/SriSaiVamshiAakam/TestPackage")
+                credentials {
+                    username = gprUser
+                    password = gprKey
+                }
+            }
+    }
+}

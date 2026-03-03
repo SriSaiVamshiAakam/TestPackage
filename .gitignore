@@ -1,0 +1,114 @@
+# Distribution / packaging
+.Python
+__pycache__/
+env/
+venv/
+develop-eggs/
+
+downloads/
+eggs/
+.eggs/
+lib/build
+lib64/
+parts/
+sdist/
+var/
+/node_modules/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Serverless directories
+modules/hugosave/apppy/service/src/main/python/hugoutils/
+modules/hugosave/apppy/service/src/main/python/stack.properties
+
+# vim swapfiles
+*.sw?
+
+# IntelliJ project files
+.idea
+*.iml
+
+.vscode
+
+**/.env
+
+.DS_Store
+# Compiled class file
+**/*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#app.json file for localstack
+local-config.json
+.mirrord/
+debug-pod-svc.yaml
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Ignore Gradle project-specific cache directory
+.gradle
+**/.gradle
+
+# Ignore Gradle build output directory
+build
+**/build/*
+
+bin
+**/bin/*
+
+# Ignore serverless directories
+.serverless
+**/.serverless
+
+.gitattributes
+
+pyenv/
+thirdparty-integrations/output
+deployment/output/
+
+# Ignore Fix Session Directories
+modules/atlas/commodity/service/src/main/sessions
+/bin/
+
+/sessions/FIX.*
+/logs/FIX.*
+
+/deployment/certs
+*.csr
+*.pem
+*.key
+**/a-cert
+**/acert
+Clients/
+Secrets/
+PGP/
+PrivateCA
+
+allure-test-results/
+
+**/local-pulumi-backend
+.pulumi/
+**/lsbackend
+
+**.pem
+**.key
+
+# exclude ls customer's config file except sample template file
+/deployment/scripts/setups/aggregate/customers/ls/*.yaml
+/deployment/scripts/setups/aggregate/customers/**/*.output.yaml
+!/deployment/scripts/setups/aggregate/customers/sample-customer.yaml
