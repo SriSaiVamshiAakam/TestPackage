@@ -1,0 +1,26 @@
+name: Sync Spring Configs
+on:
+  push:
+    paths:
+      - 'config/**'
+
+jobs:
+  sync-configs:
+    runs-on: blacksmith-2vcpu-ubuntu-2404-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: config/**
+
+      - name: Run script for each file
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            python3 deployment/products/scripts/sync_spring_configs.py --file-path "$file"
+          done
