@@ -22,5 +22,5 @@ jobs:
       - name: Run script for each file
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            python3 deployment/products/scripts/sync_spring_configs.py --file-path "$file"
+            echo "Processing file: $file"
           done
