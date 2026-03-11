@@ -1,0 +1,17 @@
+ag-card:
+  config:
+    push-provisioning-allowed-card-ids: ["this also"]
+    service:
+      scheduler:
+        clearing-settlement:
+          cron: "last_testing"
+
+common:
+  slack:
+    channel_id: "channel3"
+  channel: "133"
+  for_hrishi: "nijam"
+
+ag-cash:
+  just_like_that: "nothing"
+  new_one: "really_new"
