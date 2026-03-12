@@ -1,15 +1,16 @@
-name: Sync Spring Configs
+name: Sync Spring Configs Parallel
 on:
   push:
     paths:
       - 'config/**'
 
 jobs:
-  sync-configs:
+  list-files:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.files }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -18,9 +19,24 @@ jobs:
         uses: tj-actions/changed-files@v44
         with:
           files: config/**
+          json: true # This is the secret sauce
 
-      - name: Run script for each file
+      - name: Set matrix output
+        id: set-matrix
+        run: echo "files=${{ steps.changed-files.outputs.all_changed_files }}" >> $GITHUB_OUTPUT
+
+  sync-configs:
+    needs: list-files
+    if: ${{ needs.list-files.outputs.matrix != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        file: ${{ fromJson(needs.list-files.outputs.matrix) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run script for file
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "Processing file: $file"
-          done
+          echo "Processing file: "${{ matrix.file }}"
