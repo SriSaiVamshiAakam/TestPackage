@@ -39,4 +39,4 @@ jobs:
 
       - name: Run script for file
         run: |
-          echo "Processing file: "${{ matrix.file }}"
+          echo "Processing file: ${{ matrix.file }}"
